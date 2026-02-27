@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Портал Бронирования{% endblock %}
+
+{% block content %}
+<div class="home-container">
+    <div class="slider">
+        <div class="slider-wrapper">
+            <div class="slide active"><img src="{{ url_for('static', filename='images/slide1.jpg') }}" alt=""></div>
+            <div class="slide"><img src="{{ url_for('static', filename='images/slide2.jpg') }}" alt=""></div>
+            <div class="slide"><img src="{{ url_for('static', filename='images/slide3.jpg') }}" alt=""></div>
+            <div class="slide"><img src="{{ url_for('static', filename='images/slide4.jpg') }}" alt=""></div>
+        </div>
+        <button class="slider-btn prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="slider-btn next" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+    
+    <div class="welcome-section">
+        <h1>Добро пожаловать на портал «Банкетам.Нет»!</h1>
+        <p>Портал для бронирования помещений для проведения мероприятий</p>
+        <div class="action-buttons">
+            <a href="{{ url_for('main.register') }}" class="btn btn-primary">Регистрация</a>
+            <a href="{{ url_for('main.login') }}" class="btn btn-secondary">Войти</a>
+        </div>
+    </div>
+</div>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+function showSlide(n) {
+    slides.forEach(slide => slide.classList.remove('active'));
+    currentSlide = (n + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+}
+
+function changeSlide(direction) {
+    showSlide(currentSlide + direction);
+}
+
+setInterval(() => {
+    showSlide(currentSlide + 1);
+}, 3000);
+</script>
+{% endblock %}

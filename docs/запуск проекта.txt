@@ -1,0 +1,11 @@
+# 1. Установить зависимости
+pip install -r requirements.txt
+
+# 2. Инициализировать базу данных
+python init_db.py
+
+# 3. Запустить сервер
+python run.py
+
+# 4. Открыть в браузере
+httplocalhost5000

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="review-container">
+    <h2>Оставить отзыв</h2>
+    <div class="order-info">
+        <p><strong>Заявка №{{ order.id }}</strong></p>
+        <p>Тип услуги: {{ order.service_type }}</p>
+        <p>Дата услуги: {{ order.service_date }}</p>
+        <p>Статус: {{ order.status }}</p>
+    </div>
+    
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.text.label }}
+            {{ form.text(class="form-control", rows=5) }}
+            {% if form.text.errors %}
+                <div class="error">{{ form.text.errors[0] }}</div>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.rating.label }}
+            {{ form.rating(class="form-control") }}
+        </div>
+        {{ form.submit(class="btn btn-primary") }}
+    </form>
+    <a href="{{ url_for('main.orders') }}" class="btn btn-secondary">Назад к заявкам</a>
+</div>
+{% endblock %}
